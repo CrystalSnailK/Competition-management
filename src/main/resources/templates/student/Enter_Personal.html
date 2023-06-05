@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>学生端</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../static/layui/css/layui.css" />
+  <script src="../../static/layui/layui.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <div class="layui-layout layui-layout-admin">
+    <div class="layui-header ">
+      <div class="layui-logo layui-hide-xs layui-bg-black" style="width: 100% ;font-size: 2rem ;text-align: left;">
+        &emsp;岭南师范学院比赛管理系统</div>
+      <!-- 头部区域（可配合layui 已有的水平导航） -->
+      <ul class="layui-nav layui-layout-left">
+        <!-- 移动端显示 -->
+        <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
+          <i class="layui-icon layui-icon-spread-left"></i>
+        </li>
+      </ul>
+      <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item layui-hide layui-show-sm-inline-block">
+          <a href="javascript:;">
+            <img src="../../static/img/custom.png" class="layui-nav-img" style="width: 35%;height: 35%">
+            学生端
+          </a>
+          <dl class="layui-nav-child">
+            <dd><a href="../index.html">退出登录</a></dd>
+          </dl>
+        </li>
+      </ul>
+    </div>
+    <div class="layui-side layui-bg-black">
+      <div class="layui-side-scroll">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+          <li class="layui-nav-item"><a href="Student_Information.html">个人信息</a></li>
+          <!--        <li class="layui-nav-item"><a href="javascript:;">创建团队</a></li>-->
+          <li class="layui-nav-item layui-nav-itemed">
+            <a class="" href="javascript:;">录入信息</a>
+            <dl class="layui-nav-child">
+              <dd style="background-color: #16baaa"><a href="Enter_Personal.html" style="color: white">个人奖项</a></dd>
+              <!--            <dd><a href="javascript:;">团队奖项</a></dd>-->
+            </dl>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="layui-body">
+      <!-- 内容主体区域 -->
+
+      <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>录入个人奖项</legend>
+      </fieldset>
+      <form class="layui-form" id="demo1" action="">
+        <div class="layui-form-item">
+          <div class="layui-inline">
+            <label class="layui-form-label">选择比赛</label>
+            <div class="layui-input-inline">
+              <select name="c_name" lay-verify="required" lay-search="">
+                <option value="">直接选择</option>
+                <option value="中国大学生数学建模竞赛">中国大学生数学建模竞赛</option>
+                <option value="数学与统计学院数学文化节之课堂十星比赛">数学与统计学院数学文化节之课堂十星比赛</option>
+                <option value="数学与统计学院数学文化节之网页制作大赛">数学与统计学院数学文化节之网页制作大赛</option>
+                <option value="数学与统计学院数学文化节之三笔字大赛">数学与统计学院数学文化节之三笔字大赛</option>
+                <option value="泰迪杯全国大学生数据挖掘竞赛">泰迪杯全国大学生数据挖掘竞赛</option>
+              </select>
+            </div>
+            <!--      <label class="layui-form-label">选择时间</label>-->
+            <!--      <div class="layui-input-inline">-->
+            <!--        <div class="layui-form">-->
+            <!--          <div class="layui-input-inline">-->
+            <!--            <input type="text" class="layui-input" id="ID-laydate-demo" placeholder="请选择时间">-->
+            <!--          </div>-->
+            <!--        </div>-->
+            <!--        <script>-->
+            <!--          layui.use(function(){-->
+            <!--            var laydate = layui.laydate;-->
+            <!--            // 渲染-->
+            <!--            laydate.render({-->
+            <!--              elem: '#ID-laydate-demo'-->
+            <!--            });-->
+            <!--            // 英文版-->
+            <!--            laydate.render({-->
+            <!--              elem: '#ID-laydate-demo-en',-->
+            <!--              lang: 'en'-->
+            <!--            });-->
+            <!--          });-->
+            <!--        </script>-->
+            <!--      </div>-->
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">获奖等级</label>
+          <div class="layui-input-block">
+            <input type="radio" name="grade" value="一等奖" title="一等奖" checked="">
+            <input type="radio" name="grade" value="二等奖" title="二等奖">
+            <input type="radio" name="grade" value="三等奖" title="三等奖">
+            <input type="radio" name="grade" value="优胜奖" title="优胜奖">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <div class="layui-inline">
+            <label class="layui-form-label">指导老师</label>
+            <div class="layui-input-inline">
+              <select name="tea_name" lay-verify="required" lay-search="">
+                <option value="">直接选择</option>
+                <option value="教师一">教师一</option>
+                <option value="教师二">教师二</option>
+                <option value="教师三">教师三</option>
+                <option value="教师五">教师五</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+
+
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+          <legend>获奖证明上传</legend>
+        </fieldset>
+        <div class="layui-upload">
+          <button type="button" class="layui-btn" id="test1">上传图片</button>
+          <div class="layui-upload-list">
+            <img class="layui-upload-img" id="demo1">
+            <p id="demoText"></p>
+          </div>
+          <div style="width: 95px;">
+            <div class="layui-progress layui-progress-big" lay-showpercent="yes" lay-filter="demo">
+              <div class="layui-progress-bar" lay-percent=""></div>
+            </div>
+          </div>
+        </div>
+        <!--      <a name="list-progress"> </a>-->
+        <div style="margin-top: 10px;"></div>
+        <!--      <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">-->
+        <!--        <legend>上传参赛作品（可选）</legend>-->
+        <!--      </fieldset>-->
+        <!--      <div class="layui-btn-container">-->
+        <!--        <button type="button" class="layui-btn layui-btn-primary" id="test4"><i class="layui-icon"></i>只允许压缩文件</button>-->
+        <!--      </div>-->
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <button class="layui-btn" id="submit" lay-submit="" lay-filter="demo1"
+              style="margin-bottom: 5%">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary" style="margin-bottom: 5%">重置</button>
+          </div>
+        </div>
+      </form>
+      <!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
+      <script>
+        layui.use(['upload', 'element', 'layer'], function () {
+          var $ = layui.jquery
+            , upload = layui.upload
+            , element = layui.element
+            , layer = layui.layer;
+
+          var demo1 = document.getElementById('demo1');
+          demo1.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var submit = document.getElementById('submit');
+            var formData = new FormData(demo1);
+            var obj = {};
+            formData.forEach(function (value, key) {
+              obj[key] = value;
+            })
+            console.log(JSON.stringify(obj));
+            var xml = new XMLHttpRequest();
+            xml.open("POST", "http://localhost:8080/student/awards", true);
+            xml.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+            xml.setRequestHeader("Authorization", localStorage.getItem("token"));
+            xml.send(JSON.stringify(obj));
+
+            xml.onreadystatechange = function () {
+              if (xml.readyState == 4 && xml.status == 200) {
+                location.reload;
+                console.log("提交成功");
+              }
+            }
+          })
+
+          //常规使用 - 普通图片上传
+          var uploadInst = upload.render({
+            elem: '#test1'
+            , url: 'https://httpbin.org/post' //此处用的是第三方的 http 请求演示，实际使用时改成您自己的上传接口即可。
+            , before: function (obj) {
+              //预读本地文件示例，不支持ie8
+              obj.preview(function (index, file, result) {
+                $('#demo1').attr('src', result); //图片链接（base64）
+              });
+
+              element.progress('demo', '0%'); //进度条复位
+              layer.msg('上传中', { icon: 16, time: 0 });
+            }
+            , done: function (res) {
+              //如果上传失败
+              if (res.code > 0) {
+                return layer.msg('上传失败');
+              }
+              //上传成功的一些操作
+              //……
+              $('#demoText').html(''); //置空上传失败的状态
+            }
+            , error: function () {
+              //演示失败状态，并实现重传
+              var demoText = $('#demoText');
+              demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+              demoText.find('.demo-reload').on('click', function () {
+                uploadInst.upload();
+              });
+            }
+            //进度条
+            , progress: function (n, elem, e) {
+              element.progress('demo', n + '%'); //可配合 layui 进度条元素使用
+              if (n == 100) {
+                layer.msg('上传完毕', { icon: 1 });
+              }
+            }
+          });
+
+          //指定允许上传的文件类型 压缩文件
+
+          upload.render({ //允许上传的文件后缀
+            elem: '#test4'
+            , url: '' //此处配置你自己的上传接口即可
+            , accept: 'file' //普通文件
+            , exts: 'zip|rar|7z' //只允许上传压缩文件
+            , done: function (res) {
+              layer.msg('上传成功');
+              console.log(res)
+            }
+          });
+
+
+        });
+      </script>
+      <!--分割线-->
+    </div>
+    <div class="layui-footer" style="text-align: center">
+      <!-- 底部固定区域 -->
+      此项目由@蜗牛集团创作
+    </div>
+  </div>
+  <!--<script src="../static/layui/layui.js" type="text/javascript"></script>-->
+  <script>
+    //JS
+    layui.use(['element', 'layer', 'util'], function () {
+      var element = layui.element;
+      var layer = layui.layer;
+      var util = layui.util;
+      var $ = layui.$;
+      //头部事件
+      util.event('lay-header-event', {
+        menuLeft: function (othis) { // 左侧菜单事件
+          layer.msg('展开左侧菜单的操作', { icon: 0 });
+        },
+      });
+    });
+  </script>
+</body>
+
+</html>

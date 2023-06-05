@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>学生端</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../static/layui/css/layui.css" />
+  <script src="../../static/layui/layui.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <div class="layui-layout layui-layout-admin">
+    <div class="layui-header ">
+      <div class="layui-logo layui-hide-xs layui-bg-black" style="width: 100% ;font-size: 2rem ;text-align: left;">
+        &emsp;岭南师范学院比赛管理系统</div>
+      <!-- 头部区域（可配合layui 已有的水平导航） -->
+      <ul class="layui-nav layui-layout-left">
+        <!-- 移动端显示 -->
+        <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
+          <i class="layui-icon layui-icon-spread-left"></i>
+        </li>
+      </ul>
+      <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item layui-hide layui-show-sm-inline-block">
+          <a href="javascript:;">
+            <img src="../../static/img/custom.png" class="layui-nav-img" style="width: 35%;height: 35%">
+            学生端
+          </a>
+          <dl class="layui-nav-child">
+            <dd><a href="../index.html">退出登录</a></dd>
+          </dl>
+        </li>
+      </ul>
+    </div>
+    <div class="layui-side layui-bg-black">
+      <div class="layui-side-scroll">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+          <li class="layui-nav-item" style="background-color: #16baaa"><a href="Student_Information.html"
+              style="color: white">个人信息</a></li>
+          <li class="layui-nav-item layui-nav-itemed">
+            <a class="" href="javascript:;">录入信息</a>
+            <dl class="layui-nav-child">
+              <dd><a href="Enter_Personal.html">个人奖项</a></dd>
+            </dl>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="layui-body">
+      <!-- 内容主体区域 -->
+      <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>个人信息</legend>
+      </fieldset>
+      <form class="layui-form" action="">
+        <div class="layui-form-item">
+          <div class="layui-inline">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-inline">
+              <input type="text" id="name" disabled="disabled" name="stu_name" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">年级</label>
+            <div class="layui-input-inline">
+              <input type="text" id="grade" disabled="disabled" name="grade" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <div class="layui-inline">
+            <label class="layui-form-label">学号</label>
+            <div class="layui-input-inline">
+              <input type="text" id="ID" disabled="disabled" name="id" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">专业</label>
+            <div class="layui-input-inline">
+              <input type="text" id="major" disabled="disabled" name="major" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <div class="layui-inline">
+            <label class="layui-form-label">班级</label>
+            <div class="layui-input-inline">
+              <input type="text" id="class_num" disabled="disabled" name="class_num" autocomplete="off"
+                class="layui-input">
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">联系方式</label>
+            <div class="layui-input-inline">
+              <input type="text" id="phone" name="phone" lay-verify="phone" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">确认修改</button>
+          </div>
+        </div>
+      </form>
+      <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>个人获奖情况</legend>
+      </fieldset>
+      <table class="layui-hide" id="test" style="margin-bottom: 35%"></table>
+      <!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
+
+      <script>
+        var name1 = document.getElementById("name");
+        var grade = document.getElementById("grade");
+        var id = document.getElementById("ID");
+        var major = document.getElementById("major");
+        var class_num = document.getElementById("class_num");
+        var phone = document.getElementById("phone");
+
+        var information;
+        var reqinfo = new XMLHttpRequest();
+        reqinfo.open("GET", "http://127.0.0.1:8080/student/information", true);
+        reqinfo.setRequestHeader("Content-Type", "application/json");
+        reqinfo.setRequestHeader("Authorization", localStorage.getItem("token"));
+        reqinfo.send();
+        reqinfo.onreadystatechange = function () {
+          if (reqinfo.readyState === 4 && reqinfo.status === 200) {
+            information = JSON.parse(reqinfo.responseText);
+            // console.log(information);
+            name1.value = information.stu_name;
+            grade.value = information.grade;
+            id.value = information.sid;
+            major.value = information.major;
+            class_num.value = information.class_num;
+            phone.value = information.phone;
+          }
+        }
+
+        layui.use('table', function () {
+          var table = layui.table;
+          
+          var data;
+          var ajax = new XMLHttpRequest();
+          ajax.open("GET", "http://127.0.0.1:8080/student/awards", true);
+          ajax.setRequestHeader("Content-Type", "application/json");
+          ajax.setRequestHeader("Authorization", localStorage.getItem("token"));
+          ajax.send();
+          ajax.onreadystatechange = function () {
+            if (ajax.readyState === 4 && ajax.status === 200) {
+              // 解析返回的JSON数据
+              var response = JSON.parse(ajax.responseText);
+              data = response.data;
+
+              // 渲染表格
+              table.render({
+                elem: '#test'
+                , page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+                  layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+                  //,curr: 5 //设定初始在第 5 页
+                  , groups: 1 //只显示 1 个连续页码
+                  , first: false //不显示首页
+                  , limit: 5
+                  , last: false //不显示尾页
+                }
+                , data: data
+                , cols: [[
+                  { type: "checkbox" }
+                  , { field: 'c_name', width: 400, title: '比赛名称', align: "center" }
+                  , { field: 'c_time', width: 200, title: '比赛时间', sort: true, align: "center" }
+                  , { field: 'grade', width: 150, title: '等级', align: "center" }
+                  , { field: 'host', title: '举办方', minWidth: 200, align: "center" }
+                  , { field: 'level', title: '类别', minWidth: 200, align: "center" }
+                ]]
+              });
+
+            }
+          };
+
+        });
+      </script>
+      <!--分割线-->
+    </div>
+    <div class="layui-footer" style="text-align: center">
+      <!-- 底部固定区域 -->
+      此项目由@蜗牛集团创作
+    </div>
+  </div>
+  <script>
+    //JS
+    layui.use(['element', 'layer', 'util'], function () {
+      var element = layui.element;
+      var layer = layui.layer;
+      var util = layui.util;
+      var $ = layui.$;
+      //头部事件
+      util.event('lay-header-event', {
+        menuLeft: function (othis) { // 左侧菜单事件
+          layer.msg('展开左侧菜单的操作', { icon: 0 });
+        },
+      });
+    });
+  </script>
+</body>
+
+</html>
